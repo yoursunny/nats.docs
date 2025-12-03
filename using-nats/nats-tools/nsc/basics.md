@@ -22,7 +22,7 @@ Let’s run through the process of creating some identities and JWTs and work th
 
 ## Creating an Operator, Account and User
 
-Let’s create an operator called `MyOperator`. 
+Let’s create an operator called `MyOperator`.
 
 _There is an additional switch `--sys` that sets up the system account which is required for interacting with the NATS server. You can create and set the system account later._
 
@@ -130,7 +130,7 @@ tree ~/.nkeys
 The `nk` files themselves are named after the complete public key, and stored in a single string - the private key in question:
 
 ```bash
-cat ~/.nkeys/keys/U/DB/UDBD5FNQPSLIO6CDMIS5D4EBNFKYWVDNULQTFTUZJXWFNYLGFF52VZN7.nk 
+cat ~/.nkeys/keys/U/DB/UDBD5FNQPSLIO6CDMIS5D4EBNFKYWVDNULQTFTUZJXWFNYLGFF52VZN7.nk
 ```
 ```text
 SUAG35IAY2EF5DOZRV6MUSOFDGJ6O2BQCZHSRPLIK6J3GVCX366BFAYSNA
@@ -315,7 +315,7 @@ nsc describe user
 
 The user id is the public key for the user, the issuer is the account. This user can publish and subscribe to anything, as no limits are set.
 
-When a user connects to a nats-server, it presents it's user JWT and signs a nonce using its private key. The server verifies if the user is who they say they are by validating that the nonce was signed using the private key associated with the public key, representing the identify of the user. Next, the server fetches the issuer account and validates that the account was issued by a trusted operator completing the chain of trust verification.
+When a user connects to a nats-server, it presents its user JWT and signs a nonce using its private key. The server verifies if the user is who they say they are by validating that the nonce was signed using the private key associated with the public key, representing the identify of the user. Next, the server fetches the issuer account and validates that the account was issued by a trusted operator completing the chain of trust verification.
 
 Let’s put all of this together, and create a simple server configuration that accepts sessions from `U`.
 
@@ -397,7 +397,7 @@ nats sub --creds ~/.nkeys/creds/MyOperator/MyAccount/MyUser.creds ">"
 Publish a message:
 
 ```shell
-nats pub --creds ~/.nkeys/creds/MyOperator/MyAccount/MyUser.creds hello NATS 
+nats pub --creds ~/.nkeys/creds/MyOperator/MyAccount/MyUser.creds hello NATS
 ```
 
 Subscriber shows:

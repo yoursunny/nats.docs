@@ -20,7 +20,7 @@ One can then define additional ways a message may be removed from the Stream ear
 
 In both `WorkQueuePolicy` and `InterestPolicy` the age, size and count limits will still apply as upper bounds.
 
-A final control is the Maximum Size any single message may have. NATS have it's own limit for maximum size (1 MiB by default), but you can say a Stream will only accept messages up to 1024 bytes using `MaxMsgSize`.
+A final control is the Maximum Size any single message may have. NATS have its own limit for maximum size (1 MiB by default), but you can say a Stream will only accept messages up to 1024 bytes using `MaxMsgSize`.
 
 The `Discard Policy` sets how messages are discarded when limits set by `LimitsPolicy` are reached. The `DiscardOld` option removes old messages making space for new, while `DiscardNew` refuses any new messages.
 
@@ -57,7 +57,7 @@ The default window to track duplicates in is 2 minutes, this can be set on the c
 
 ## Acknowledgement Models
 
-Streams support acknowledging receiving a message, if you send a `Request()` to a subject covered by the configuration of the Stream the service will reply to you once it stored the message. If you just publish, it will not. A Stream can be set to disable Acknowledgements by setting `NoAck` to `true` in it's configuration.
+Streams support acknowledging receiving a message, if you send a `Request()` to a subject covered by the configuration of the Stream the service will reply to you once it stored the message. If you just publish, it will not. A Stream can be set to disable Acknowledgements by setting `NoAck` to `true` in its configuration.
 
 Consumers have 3 acknowledgement modes:
 
@@ -214,7 +214,7 @@ The Consumer sequence increases - each delivery attempt increases the sequence -
 Finally, if I then fetch it again and ack it this time:
 
 ```shell
-nats consumer next ORDERS DISPATCH 
+nats consumer next ORDERS DISPATCH
 ```
 
 ```
@@ -284,7 +284,7 @@ Let's look at each of these, first we make a new Stream `ORDERS` and add 100 mes
 Now create a `DeliverAll` pull-based Consumer:
 
 ```shell
-nats consumer add ORDERS ALL --pull --filter ORDERS.processed --ack none --replay instant --deliver all 
+nats consumer add ORDERS ALL --pull --filter ORDERS.processed --ack none --replay instant --deliver all
 nats consumer next ORDERS ALL
 ```
 

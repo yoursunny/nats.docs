@@ -14,8 +14,8 @@ Claims are a fancy way of asserting information on a _subject_. In this context,
 
 NATS further restricts JWTs by requiring that JWTs be:
 
-* Digitally signed _always_ and only using [Ed25519](https://ed25519.cr.yp.to/). 
-* NATS adopts the convention that all _Issuer_ and _Subject_ fields in a JWT claim must be a public [NKEY](../auth_intro/nkey_auth.md). 
+* Digitally signed _always_ and only using [Ed25519](https://ed25519.cr.yp.to/).
+* NATS adopts the convention that all _Issuer_ and _Subject_ fields in a JWT claim must be a public [NKEY](../auth_intro/nkey_auth.md).
 * _Issuer_ and _Subject_ must match specific roles depending on the claim [NKeys](https://github.com/nats-io/nkeys).
 
 ### NKey Roles
@@ -60,7 +60,7 @@ Configuration is broken up into separate steps. Depending on organizational need
 
 Practically, JWT configuration is done using the [`nsc` tool](../../../../using-nats/nats-tools/nsc/README.md). It can be set up to issue [NKeys](../auth_intro/nkey_auth.md) and corresponding JWTs for all [nkey roles](#nkey-roles): Operator/Account/User \([Example usage](../../../../using-nats/nats-tools/nsc/basics.md#creating-an-operator-account-and-user)\). Despite Account and User creation not happening in server configuration, this model is a centralized authentication and authorization setup.
 
-Provided institutional trust, it is also possible to use nsc to import account or user public [NKeys](../auth_intro/nkey_auth.md) and issue corresponding JWTs. This way an operator can issue account JWTs and a separate entity can issue JWTs for user associated with it's account. Neither entity has to be aware of the other's private Nkey. This not only allows users to be configured some place other than servers, but also by different organizations altogether. Say administrators of a NATS installation controlling operators, issuing account JWTs to individual prod/dev teams managing their own user. This is a fully decentralized authorization setup!
+Provided institutional trust, it is also possible to use nsc to import account or user public [NKeys](../auth_intro/nkey_auth.md) and issue corresponding JWTs. This way an operator can issue account JWTs and a separate entity can issue JWTs for user associated with its account. Neither entity has to be aware of the other's private Nkey. This not only allows users to be configured some place other than servers, but also by different organizations altogether. Say administrators of a NATS installation controlling operators, issuing account JWTs to individual prod/dev teams managing their own user. This is a fully decentralized authorization setup!
 
 With an Operator JWT in place, the server needs to be configured to trust it by specifying `operator`. Furthermore the server needs a way to obtain account JWTs. This done by either defaulting to the resolver specified in the operator jwt or by manually specifying the [resolver](resolver.md). Depending on your configuration an [account server](../../../../using-nats/nats-tools/nsc/basics.md#account-server-configuration) needs to be in place
 

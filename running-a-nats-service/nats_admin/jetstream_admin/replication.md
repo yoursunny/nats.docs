@@ -16,7 +16,7 @@ A _mirror_ copies data from 1 other stream, as far as possible IDs and ordering 
 
 ## Sources
 
-A _source_ is a stream where data is copied from, one stream can have multiple sources and will read data in from them all. The stream will also listen for messages on it's own subject. We can therefore not maintain absolute ordering, but data from 1 single source will be in the correct order but mixed in with other streams. You might also find the timestamps of streams can be older and newer mixed in together as a result.
+A _source_ is a stream where data is copied from, one stream can have multiple sources and will read data in from them all. The stream will also listen for messages on its own subject. We can therefore not maintain absolute ordering, but data from 1 single source will be in the correct order but mixed in with other streams. You might also find the timestamps of streams can be older and newer mixed in together as a result.
 
 A Stream with sources may also listen on subjects, but could have no listening subject. When using the `nats` CLI to create sourced streams use `--subjects` to supply subjects to listen on.
 
@@ -154,7 +154,7 @@ When configured we'll see some additional information in a `nats stream info` ou
 
 ```shell
 nats stream info ARCHIVE
-``` 
+```
 Output extract
 ```text
 ...

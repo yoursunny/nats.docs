@@ -66,7 +66,7 @@ try (Connection nc = Nats.connect("localhost")) {
         // from the internal request timeout
     }
     catch (TimeoutException e) {
-        // The future timed out meaning it's timeout was shorter than
+        // The future timed out meaning its timeout was shorter than
         // the publish async's request timeout
     }
     catch (InterruptedException e) {

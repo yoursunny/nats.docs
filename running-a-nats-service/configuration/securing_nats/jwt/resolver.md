@@ -32,22 +32,22 @@ resolver: {
     # To free up storage you must manually delete files with the suffix .delete.
     allow_delete: false
     # Interval at which a nats-server with a nats based account resolver will compare
-    # it's state with one random nats based account resolver in the cluster and if needed,
+    # its state with one random nats based account resolver in the cluster and if needed,
     # exchange jwt and converge on the same set of jwt.
     interval: "2m"
     # limit on the number of jwt stored, will reject new jwt once limit is hit.
     limit: 1000
 }
 ```
- 
+
 This resolver type also supports `resolver_preload`. When present, JWTs are listed and stored in the resolver. There, they may be subject to updates. Restarts of the `nats-server` will hold on to these more recent versions.
 
 Not every server in a cluster needs to be set to `full`. You need enough to still serve your workload adequately, while some servers are offline.
- 
+
 ### Cache
 
-The Cache resolver means that the `nats-server` only stores a subset of the JWTs and evicts others based on an LRU scheme. 
-The cache relies on (a) `full` NATS-based resolver(s) to retrieve accounts not present in the cache. A cache resolver does NOT accept account push messages from nsc and therefore is not suitable for stand-alone operation without a full resolver present. 
+The Cache resolver means that the `nats-server` only stores a subset of the JWTs and evicts others based on an LRU scheme.
+The cache relies on (a) `full` NATS-based resolver(s) to retrieve accounts not present in the cache. A cache resolver does NOT accept account push messages from nsc and therefore is not suitable for stand-alone operation without a full resolver present.
 
 ```yaml
 resolver: {
@@ -56,7 +56,7 @@ resolver: {
     dir: "./"
     # limit on the number of jwt stored, will evict old jwt once limit is hit.
     limit: 1000
-    # How long to hold on to a jwt before discarding it. 
+    # How long to hold on to a jwt before discarding it.
     ttl: "2m"
 }
 ```

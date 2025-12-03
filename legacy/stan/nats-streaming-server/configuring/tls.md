@@ -4,17 +4,17 @@
 
 To enable user authentication from the command line, you can use the same mechanism as the NATS Server (`nats-server`). You pass in the `—user <user>` and `—pass <pass>` commands, or `--auth` parameters, and the NATS streaming server will automatically use these credentials. Or you can use a configuration file with a single user or token.
 
-When using a configuration file with multi-user authorization, you must use the `—user` and `—pass` parameters with the NATS streaming server, matching a user in the configuration file, in order to specify which user the NATS streaming server should authenticate with to it's embedded NATS server.
+When using a configuration file with multi-user authorization, you must use the `—user` and `—pass` parameters with the NATS streaming server, matching a user in the configuration file, in order to specify which user the NATS streaming server should authenticate with to its embedded NATS server.
 
 For example, if you pass the NATS Streaming server a file with a several users, you must run the streaming server as a user such as "Joe" who is defined in the configuration file.
 
 ## Using TLS
 
-While there are several TLS related parameters for the NATS Streaming server, securing the server's connection is straightforward. However, bear in mind that the NATS Streaming server embeds the NATS server resulting in a client-server relationship where the NATS Streaming server is a client of it's embedded NATS server.
+While there are several TLS related parameters for the NATS Streaming server, securing the server's connection is straightforward. However, bear in mind that the NATS Streaming server embeds the NATS server resulting in a client-server relationship where the NATS Streaming server is a client of its embedded NATS server.
 
 That means two sets of TLS configuration parameters must be used: TLS server parameters for the embedded NATS server, and TLS client parameters for the NATS Streaming server itself.
 
-The streaming server specifies it's TLS client certificates with the following three parameters:
+The streaming server specifies its TLS client certificates with the following three parameters:
 
 ```bash
 -tls_client_key              Client key for the streaming server

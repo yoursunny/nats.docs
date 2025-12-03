@@ -76,7 +76,7 @@ using NATS.Client.Core;
 await using var client = new NatsClient(new NatsOpts
 {
     Url = "nats://demo.nats.io:4222",
-    
+
     // Set Ping Interval to 20 seconds and Max Pings Outstanding to 5
     PingInterval = TimeSpan.FromSeconds(20),
     MaxPingOut = 5,

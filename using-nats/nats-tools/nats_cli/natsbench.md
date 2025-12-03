@@ -41,9 +41,9 @@ Verify that the NATS server starts successfully, as well as the HTTP monitor:
 [2932] 2025/10/28 12:29:02.881018 [INF]  _ | | __|_   _/ __|_   _| _ \ __| /_\ |  \/  |
 [2932] 2025/10/28 12:29:02.881019 [INF] | || | _|  | | \__ \ | | |   / _| / _ \| |\/| |
 [2932] 2025/10/28 12:29:02.881020 [INF]  \__/|___| |_| |___/ |_| |_|_\___/_/ \_\_|  |_|
-[2932] 2025/10/28 12:29:02.881020 [INF] 
+[2932] 2025/10/28 12:29:02.881020 [INF]
 [2932] 2025/10/28 12:29:02.881021 [INF]          https://docs.nats.io/jetstream
-[2932] 2025/10/28 12:29:02.881022 [INF] 
+[2932] 2025/10/28 12:29:02.881022 [INF]
 [2932] 2025/10/28 12:29:02.881022 [INF] ---------------- JETSTREAM ----------------
 [2932] 2025/10/28 12:29:02.881023 [INF]   Strict:          true
 [2932] 2025/10/28 12:29:02.881026 [INF]   Max Memory:      12.00 GB
@@ -137,7 +137,7 @@ As expected, while the number of messages per second decreases with the larger m
 
 ## Run a 1:N throughput test
 
-You can also measure performance with a message fan-out where multiple subscribers receive a copy of the message. You can do this using the `--client` flag, each client being a Go-routine, making it's own connection to the server and subscribing to the subject.
+You can also measure performance with a message fan-out where multiple subscribers receive a copy of the message. You can do this using the `--client` flag, each client being a Go-routine, making its own connection to the server and subscribing to the subject.
 
 When specifying multiple clients `nats bench` will also report aggregated statistics.
 
@@ -304,7 +304,7 @@ You can measure the performance of publishing (storing) messages into a stream u
 - `nats bench js pub sync` publishes the messages synchronously one after the other (so while it's good for measuring latency, it's not good to measure throughput).
 - `nats bench js pub async` publishes a batch of messages asynchronously, waits for all the publications' acknowledgements and moves on to the next batch (which is a good way to measure throughput).
 - `nats bench js pub batch` uses the atomic batch publish (while batching is currently implemented only to provide atomicity, it has the side effect of potentially helping throughout, especially for smaller messages).
-- 
+-
 
 `nats bench js pub` will by default use a stream called `benchstream`, and `--create` will automatically create the stream if it doesn't exist yet. Also you can use `--purge` to clear the stream first. You can specify stream attributes like `--replicas 3` or `--storage memory`, or `--maxbytes` or operate on any existing stream with `--stream`.
 
@@ -349,7 +349,7 @@ Finished      0s [==============================================================
 NATS JetStream asynchronous publisher stats: 403,828 msgs/sec ~ 49 MiB/sec ~ 2.48us
 ```
 
-You can even measure publish performance to an `--replicas 1` stream with asynchronous persistence using `--persistasync` which yields throughput similar to when using memory storage, as by default JetStream flushes disk writes synchronously, meaning that even if the `nats-server` process is killed suddenly no messages will be lost as the OS already has them in it's buffer and will flush them to disk (it can be also configured to not just flush but also sync after every write in which case no message will be lost even if the whole host goes down suddenly, at the expense of latency obviously)).
+You can even measure publish performance to an `--replicas 1` stream with asynchronous persistence using `--persistasync` which yields throughput similar to when using memory storage, as by default JetStream flushes disk writes synchronously, meaning that even if the `nats-server` process is killed suddenly no messages will be lost as the OS already has them in its buffer and will flush them to disk (it can be also configured to not just flush but also sync after every write in which case no message will be lost even if the whole host goes down suddenly, at the expense of latency obviously)).
 ### Measure JetStream consumption (replay) performance
 
 Once you have stored some messages on a stream you can measure the replay performance in multiple ways:
@@ -444,7 +444,7 @@ Finished      0s [==============================================================
 
 ### Measuring publication and consumption together
 
-While measuring publication and consumption to and from a stream separately yields interesting metrics, during normal operations most of the time the consumers are going to be on-line and consuming while the messages are being published to the stream. 
+While measuring publication and consumption to and from a stream separately yields interesting metrics, during normal operations most of the time the consumers are going to be on-line and consuming while the messages are being published to the stream.
 
 First purge the stream and start the consuming instance of `nats bench`, for example using an ordered consumer and 8 clients (so a fan out of 8):
 ```bash
@@ -472,7 +472,7 @@ nats bench js pub async jsfoo --clients 8 --no-progress
 
  NATS JetStream asynchronous publisher aggregated stats: 252,544 msgs/sec ~ 31 MiB/sec
  message rates min 31,586 | avg 32,614 | max 33,289 | stddev 638 msgs
- avg latencies min 30.04us | avg 30.67us | max 31.66us | stddev 0.60us 
+ avg latencies min 30.04us | avg 30.67us | max 31.66us | stddev 0.60us
 ```
 
 Consumer's output:

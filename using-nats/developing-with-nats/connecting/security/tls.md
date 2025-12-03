@@ -4,7 +4,7 @@ While authentication limits which clients can connect, TLS can be used to encryp
 
 ## Connecting with TLS and verify client identity
 
-Using TLS to connect to a server that verifies the client's identity is straightforward. The client has to provide a certificate and private key. The NATS client will use these to prove it's identity to the server. For the client to verify the server's identity, the CA certificate is provided as well.
+Using TLS to connect to a server that verifies the client's identity is straightforward. The client has to provide a certificate and private key. The NATS client will use these to prove its identity to the server. For the client to verify the server's identity, the CA certificate is provided as well.
 
 Use example certificates created in [self signed certificates for testing](../../../../running-a-nats-service/configuration/securing_nats/tls.md#creating-self-signed-certificates-for-testing).
 
@@ -32,8 +32,8 @@ defer nc.Close()
 // This examples requires certificates to be in the java keystore format (.jks).
 // To do so openssl is used to generate a pkcs12 file (.p12) from client-cert.pem and client-key.pem.
 // The resulting file is then imported int a java keystore named keystore.jks using keytool which is part of java jdk.
-// keytool is also used to import the CA certificate rootCA.pem into truststore.jks.  
-// 
+// keytool is also used to import the CA certificate rootCA.pem into truststore.jks.
+//
 // openssl pkcs12 -export -out keystore.p12 -inkey client-key.pem -in client-cert.pem -password pass:password
 // keytool -importkeystore -srcstoretype PKCS12 -srckeystore keystore.p12 -srcstorepass password -destkeystore keystore.jks -deststorepass password
 //

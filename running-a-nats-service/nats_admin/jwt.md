@@ -364,7 +364,7 @@ Each NKEY is referenced, together with additional configuration, in a JWT docume
    [configuration](https://github.com/nats-io/jwt/blob/e11ce317263cef69619fc1ca743b195d02aa1d8a/user_claims.go#L25)
    such as permissions and limits.
 
-In addition, JWTs can contain settings related to their decentralized nature, such as expiration/revocation/signing. At no point do JWTs contain the private portion of an NKEY, only signatures that can be verified with public NKEY. JWT content can be viewed as public, although it's content may reveal which subjects/limits/permissions exist.
+In addition, JWTs can contain settings related to their decentralized nature, such as expiration/revocation/signing. At no point do JWTs contain the private portion of an NKEY, only signatures that can be verified with public NKEY. JWT content can be viewed as public, although its content may reveal which subjects/limits/permissions exist.
 
 #### Key Takeaways
 
@@ -634,7 +634,7 @@ resolver: URL(http://localhost:9090/jwt/v1/accouts/)
     restricting the operation otherwise
 
     ```
-    > nats -s localhost:4222 "--creds=user.creds" pub "foo" "hello world" 
+    > nats -s localhost:4222 "--creds=user.creds" pub "foo" "hello world"
     > 16:56:02 Published 11 bytes to "foo"
     ```
 11. Output if `user.creds` were to contain a JWT where the maximum
@@ -879,7 +879,7 @@ following has to happen:
 1. Obtain the operator JWT using: `nsc describe operator --raw` and
    store the output in a file named `operator.jwt`. The option `--raw`
    causes the raw JWT to be emitted,
-2. Exchange that file or it's content in any way you like, email works
+2. Exchange that file or its content in any way you like, email works
    fine (as there are no credentials in the JWT),
 3. Import the operator JWT into the second environment with: `nsc add
    operator -u operator.jwt`.
@@ -906,7 +906,7 @@ but:
 4. Refresh the operator JWT in this environment by performing the
    [import steps using `--force`](jwt.md#import-operator---non-operatoradministrator-environment---decentralizedself-service-deployment-modes)
 
-To import the system account user needed for administrative purposes as well as monitoring, perform these steps: 
+To import the system account user needed for administrative purposes as well as monitoring, perform these steps:
 1. Perform `nsc describe account -n SYS --raw` and store the output in
    a file named `SYS.jwt`.
 
@@ -1000,7 +1000,7 @@ Similar to the operator signing keys are recommended. Generate signing key for a
 
 #### **Export Account - Non Operator/Administrator Environment - Decentralized Deployment Modes** <a href="export-account-decentralized-deployment-modes" id="export-account-decentralized-deployment-modes"></a>
 
-In this mode, the created account is self-signed. To have it signed by the operator perform these steps: 
+In this mode, the created account is self-signed. To have it signed by the operator perform these steps:
 1. In this environment export the created account as a JWT like this
    `nsc describe account -n <account name> --raw`.
 
@@ -1511,7 +1511,7 @@ static string IssueUserJwt(string userKeyPub)
 
     // Issue At time is stored in unix seconds
     long issuedAt = DateTimeOffset.Now.ToUnixTimeSeconds();
-    
+
     // Generate a claim without jti so we can compute jti off of it
     string claim = string.Format(
         claimFmt,
@@ -1520,12 +1520,12 @@ static string IssueUserJwt(string userKeyPub)
         "", /* blank jti */
         userKeyPub,
         accId);
-    
+
     // Compute jti, a base32 encoded sha256 hash
     string jti = SimpleBase.Base32.Rfc4648.Encode(
         SHA256.Create().ComputeHash(Encoding.UTF8.GetBytes(claim)),
         false);
-    
+
     // recreate full claim with jti set
     claim = string.Format(
         claimFmt,
@@ -1535,17 +1535,17 @@ static string IssueUserJwt(string userKeyPub)
         userKeyPub,
         accId
     );
-    
+
     // all three components (header/body/signature) are base64url encoded
     string encHeader = ToBase64Url(Encoding.UTF8.GetBytes(header));
     string encBody = ToBase64Url(Encoding.UTF8.GetBytes(claim));
-    
+
     // compute the signature off of header + body (. included on purpose)
     byte[] sig = Encoding.UTF8.GetBytes($"{encHeader}.{encBody}");
     var signature = new byte[64];
     accountSigningKey.Sign(sig, signature);
     string encSig = ToBase64Url(signature);
-    
+
     // append signature to header and body and return it
     return $"{encHeader}.{encBody}.{encSig}";
 }
@@ -1559,7 +1559,7 @@ static string IssueUserCreds()
     KeyPair userSeed = KeyPair.CreatePair(PrefixByte.User);
     string userKeyPub = userSeed.GetPublicKey();
     string jwt = IssueUserJwt(userKeyPub);
-    
+
     // return jwt and corresponding user seed as creds
     return $@"-----BEGIN NATS USER JWT-----
 {jwt}
@@ -1658,7 +1658,7 @@ another is compensated by the next one.
 | `$SYS.ACCOUNT.<account-id>.DISCONNECT`       | Sent when Client disconnected            |              |
 | `$SYS.ACCOUNT.<account-id>.SERVER.CONNS`     | Sent when an accounts connections change |              |
 
-The subject `$SYS.SERVER.ACCOUNT.<account-id>.CONNS` is still used but it is recommended to subscribe to it's new name `$SYS.ACCOUNT.<account-id>.SERVER.CONNS`.
+The subject `$SYS.SERVER.ACCOUNT.<account-id>.CONNS` is still used but it is recommended to subscribe to its new name `$SYS.ACCOUNT.<account-id>.SERVER.CONNS`.
 
 ### Service Subjects
 
@@ -1907,7 +1907,7 @@ has to be pushed in order to publicize the revocation.
 
 #### **Activations**
 
-To revoke all activations of the export, identified by `--account` and `--subject` (`--stream` if the export is a stream), issued for a given Account identity NKEY use: 
+To revoke all activations of the export, identified by `--account` and `--subject` (`--stream` if the export is a stream), issued for a given Account identity NKEY use:
 ```shell
 nsc revocations add-activation --account <account name> --subject <export name> \
   --target-account <account identity public NKEY>

@@ -52,7 +52,7 @@ Let's take a look at the configuration options:
 | `http` | An `http` configuration block specifying HTTP options. |
 | `logging` | A `logging` configuration block specifying server logging options. |
 | `nats` | A `nats` configuration block specifying NATS connection information for the account server to push JWT changes to a NATS server. |
-| `operatorjwtpath` | The path to an operator JWT. Required for non-read-only servers. Only JWTs signed by the operator \(or one of it's signing keys\) are accepted. |
+| `operatorjwtpath` | The path to an operator JWT. Required for non-read-only servers. Only JWTs signed by the operator \(or one of its signing keys\) are accepted. |
 | `store` | A `store` configuration block specifying store options. |
 | `systemaccountjwtpath` | Path to an Account JWT that should be returned as the system account. |
 | `primary` | URL for the primary, `protocol://host:port`. |

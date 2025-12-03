@@ -49,7 +49,7 @@ Starting backup of Stream "ORDERS" with 13 data blocks
 Received 13 MiB bytes of compressed data in 3368 chunks for stream "ORDERS" in 1.223428188s, 813 MiB uncompressed
 ```
 
-During a backup operation, the stream is placed in a status where it's configuration cannot change and no data will be
+During a backup operation, the stream is placed in a status where its configuration cannot change and no data will be
 evicted based on stream retention policies.
 
 {% hint style="info" %}
